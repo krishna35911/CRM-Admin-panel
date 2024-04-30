@@ -44,24 +44,25 @@ const handleProtectedCheck = async()=>{
         <div className="p-6">
           <h1 className="text-3xl font-bold mb-8 text-center">All Carousals</h1>
           <div className="overflow-x-auto">
-            <table className="min-w-full table-auto border-collapse border border-gray-200 rounded-lg overflow-x-auto">
+            <table className="min-w-full table-auto border border-collapse   border-gray-400  rounded-lg overflow-x-auto">
               <thead>
-                <tr>
-                  <th className="px-4 py-2 border">Title</th>
-                  <th className="px-4 py-2 border">Description</th>
-                  <th className="px-4 py-2 border">Image</th>
-                  <th className="px-4 py-2 border">Actions</th>
+                <tr >
+                  <th className="border border-gray-400  px-4 py-2 ">Title</th>
+                  <th className="border  border-gray-400   px-4 py-2 ">Description</th>
+                  <th className="border  border-gray-400  px-4 py-2 ">Image</th>
+                  <th className="border  border-gray-400   px-4 py-2 ">Actions</th>
                 </tr>
               </thead>
               <tbody className="text-center">
-                {carousels?.map((carousel) => (
-                  <tr key={carousel.id}>
-                    <td className="border px-4 py-2">{carousel?.title}</td>
-                    <td className="border px-4 py-2">{carousel?.description}</td>
-                    <td className="border px-4 py-2">
-                      <img src={carousel?.image} alt={carousel.title} className="w-16 h-16 object-cover" />
+                {carousels?.length>0?
+                carousels.map((carousel) => (
+                  <tr key={carousel.id}  className='border border-gray-400  '>
+                    <td className="border  border-gray-400   px-4 py-2">{carousel?.title}</td>
+                    <td className="border  border-gray-400    px-4 py-2">{carousel?.description}</td>
+                    <td className="border  border-gray-400    px-4 py-2">
+                      <img src={carousel?.image} alt={carousel.title} className="w-16 h-16 object-cover mx-auto" />
                     </td>
-                    <td className="border px-4 py-2">
+                    <td className="border  border-gray-400    px-4 py-2">
                       <button className="text-blue-800 ">
                       <i class="fa-solid fa-pen"></i>
                       </button>
@@ -70,7 +71,7 @@ const handleProtectedCheck = async()=>{
                       </button>
                     </td>
                   </tr>
-                ))}
+                )):<p>No data available</p>}
               </tbody>
             </table>
           </div>

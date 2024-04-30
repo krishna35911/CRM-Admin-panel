@@ -81,7 +81,7 @@
     return (
       <div className='lg:flex'>
         <Sidebar />
-        <div className=' border flex flex-col items-center w-[100%] h-screen lg:h-auto bg-gray-300 '>
+        <div className=' flex flex-col items-center w-[100%] h-screen lg:h-auto  '>
           <Card color="transparent" shadow={false}>
             <Typography variant="h3" color="blue-gray" className='mt-8'>
               Add Carousal
