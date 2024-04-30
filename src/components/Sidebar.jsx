@@ -17,7 +17,7 @@ function Sidebar() {
     </button>
 
     {/* Sidebar for large screens */}
-    <section className="hidden lg:block w-[18%] h-screen bg-black ">
+    <section className="hidden lg:block w-[18%] h-[100vh] bg-black ">
       <List className='text-white'>
 
       <Link to={'/addcarousel'}>
