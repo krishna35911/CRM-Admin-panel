@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
-import { getacrouselapi, protectedAPI } from '../apiservices/allAPI';
+import { deleteacrouselapi, getacrouselapi, protectedAPI } from '../apiservices/allAPI';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import { getacrouselapi, protectedAPI } from '../apiservices/allAPI';
 import { Link } from 'react-router-dom';
 
 function Viewcarousel() {
@@ -18,6 +21,23 @@ const handleProtectedCheck = async()=>{
         if(result.status!==200){
           navigate("/")
         }
+      }
+    }
+
+    const deletecarousle = async(id)=>{
+      try {
+        const reqHeader = {"x-access-token":localStorage.getItem("token")}
+        const res = await deleteacrouselapi(id,reqHeader)
+        if(res.status===200){
+          toast.success("Deleted Successfully")
+          getcarousels()
+          console.log(res);
+        }else{
+          toast.error(res.response.data.message)
+        }
+        
+      } catch (error) {
+        console.log(error);
       }
     }
 
@@ -67,13 +87,16 @@ const handleProtectedCheck = async()=>{
                       <Link to={`/edit-carousel/${carousel._id}`} className="text-blue-800 ">
                       <i class="fa-solid fa-pen"></i>
                       </Link>
-                      <button className="text-red-600 ms-6">
+
+                      <button type='button' className="text-red-600 ms-6" onClick={()=>deletecarousle(carousel._id)}>
+                      {/* <button className="text-red-600 ms-6"> */}
                       <i class="fa-solid fa-trash"></i>
                       </button>
                     </td>
                   </tr>
                 )):<p>No data available</p>}
               </tbody>
+              <ToastContainer  autoClose={2500} />
             </table>
           </div>
         </div>
