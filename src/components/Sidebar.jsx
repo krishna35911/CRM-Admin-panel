@@ -17,10 +17,10 @@ function Sidebar() {
     </button>
 
     {/* Sidebar for large screens */}
-    <section className="hidden lg:block w-[18%] h-[100vh] bg-black ">
+    <section className="hidden lg:block w-[18%] h-auto bg-black ">
       <List className='text-white'>
 
-      <Link to={'/addcarousel'}>
+      <Link to={'/add-carousel'}>
           <ListItem>
             <ListItemPrefix>
             <i className="fa-solid fa-plus"></i>
@@ -29,7 +29,7 @@ function Sidebar() {
           </ListItem>
       </Link>
 
-        <Link to={'/allcarousel'}>
+        <Link to={'/all-carousel'}>
           <ListItem>
             <ListItemPrefix>
             <i className="fa-regular fa-eye"></i>

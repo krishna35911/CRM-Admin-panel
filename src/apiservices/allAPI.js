@@ -15,3 +15,7 @@ export const protectedAPI = async (reqHeader)=>{
 export const addCarousalAPI = async (reqBody,reqHeader) => {
     return await commonAPI('POST',`${SERVER_URL}/api/admin/addCarousel`,reqBody,reqHeader)
 }
+
+export const getacrouselapi = async (reqHeader)=>{
+    return await commonAPI('GET',`${SERVER_URL}/api/admin/getCarousel`,"",reqHeader)
+}
