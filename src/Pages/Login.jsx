@@ -27,7 +27,7 @@ function Login() {
           email:"",password:""
          })
         setTimeout(() => {
-          navigate('/main')
+          navigate('/add-carousel')
         },3000)
         }else{
           toast.error(result.response.data.message)

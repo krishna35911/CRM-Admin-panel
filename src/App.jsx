@@ -10,7 +10,7 @@ function App() {
     <>
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/addcarousel" element={<AddCarousel />} />
+      <Route path="/add-carousel" element={<AddCarousel />} />
       <Route path="/allcarousel" element={<Viewcarousel />} />
     </Routes>
     </>

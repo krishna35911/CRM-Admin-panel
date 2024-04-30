@@ -3,7 +3,7 @@ import Sidebar from '../components/Sidebar'
 
 function Viewcarousel() {
   return (
-    <div className='flex '>
+    <div className='lg:flex '>
         <Sidebar/>
       <div>
         all carousel

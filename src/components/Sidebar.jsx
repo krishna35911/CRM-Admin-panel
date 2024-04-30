@@ -13,7 +13,7 @@ function Sidebar() {
     <>
     {/* Button for small screens */}
     <button onClick={toggleSidebar} className="block lg:hidden p-4 focus:outline-none">
-    <i class="fa-solid fa-bars"></i>
+    <i className="fa-solid fa-bars"></i>
     </button>
 
     {/* Sidebar for large screens */}
@@ -23,7 +23,7 @@ function Sidebar() {
       <Link to={'/addcarousel'}>
           <ListItem>
             <ListItemPrefix>
-            <i class="fa-solid fa-plus"></i>
+            <i className="fa-solid fa-plus"></i>
             </ListItemPrefix>
             Add Carousel
           </ListItem>
@@ -32,12 +32,11 @@ function Sidebar() {
         <Link to={'/allcarousel'}>
           <ListItem>
             <ListItemPrefix>
-            <i class="fa-regular fa-eye"></i>
+            <i className="fa-regular fa-eye"></i>
             </ListItemPrefix>
             All Carousel
           </ListItem>
         </Link>
-        
       </List>
     </section>
 
@@ -56,7 +55,7 @@ function Sidebar() {
               <Link to="/addcarousel">
                 <ListItem >
                   <ListItemPrefix>
-                  <i class="fa-solid fa-plus"></i>
+                  <i className="fa-solid fa-plus"></i>
                   </ListItemPrefix>
                   Add Carousel
                 </ListItem>
@@ -64,7 +63,7 @@ function Sidebar() {
               <Link to="/allcarousel">
                 <ListItem >
                   <ListItemPrefix>
-                    <i class="fa-solid fa-eye"></i>
+                    <i className="fa-solid fa-eye"></i>
                   </ListItemPrefix>
                   All Carousel
                 </ListItem>
