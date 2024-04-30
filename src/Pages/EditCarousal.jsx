@@ -68,7 +68,7 @@ function EditCarousal() {
           setPreview("")
 
         }else{
-          toast.error(result.response.data.message)
+          toast.error(result.response.data.error)
         }
       } catch (error) {
         console.log(error);
