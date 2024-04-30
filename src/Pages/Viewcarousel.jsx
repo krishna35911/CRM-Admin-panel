@@ -4,7 +4,7 @@ import Sidebar from '../components/Sidebar';
 
 function Viewcarousel() {
   const [carousels, setCarousels] = useState([]);
-
+  
 
   return (
     <div className="lg:flex">
@@ -49,6 +49,7 @@ function Viewcarousel() {
       <div>
         all carousel
       </div>
+    </div>
     </div>
   );
 }
