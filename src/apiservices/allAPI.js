@@ -19,3 +19,10 @@ export const addCarousalAPI = async (reqBody,reqHeader) => {
 export const getacrouselapi = async (reqHeader)=>{
     return await commonAPI('GET',`${SERVER_URL}/api/admin/getCarousel`,"",reqHeader)
 }
+
+export const getSingleCarousalByIdAPI = async (id,reqHeader)=>{
+    return await commonAPI('GET',`${SERVER_URL}/api/admin/get-carousel-by-id/${id}`,"",reqHeader)
+}
+export const editCarousalAPI = async (id,reqBody,reqHeader)=>{
+    return await commonAPI('PUT',`${SERVER_URL}/api/admin/updateCarousel/${id}`,reqBody,reqHeader)
+}

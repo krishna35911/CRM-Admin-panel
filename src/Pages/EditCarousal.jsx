@@ -1,12 +1,13 @@
-  import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
   import Sidebar from '../components/Sidebar'
   import { Card,Input,Button, Typography,Textarea,} from "@material-tailwind/react";
-  import { useNavigate } from 'react-router-dom';
-  import { addCarousalAPI, protectedAPI } from '../apiservices/allAPI';
+  import { useNavigate, useParams } from 'react-router-dom';
+  import {   editCarousalAPI, getSingleCarousalByIdAPI, protectedAPI } from '../apiservices/allAPI';
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
-
-  function AddCarousel() {
+function EditCarousal() {
+    const {id} =  useParams()
+    console.log(id);
     const fileInputRef = useRef(null)
     const [preview,setPreview] = useState("")
     const navigate = useNavigate()
@@ -16,36 +17,33 @@
       link: "",
       image: ""
     })
-    console.log(addCarousel)
 
-    const handleProtectedCheck = async()=>{
-      const token = localStorage.getItem("token")
-      console.log(token);
-      if(!token){
-        navigate("/")
-      }else{
-        const reqHeader = {"x-access-token":token}
-        const result = await protectedAPI(reqHeader)
-        console.log(result); 
-        if(result.status!==200){
-          navigate("/")
+
+    // console.log(addCarousel)
+
+    // get single carousal data
+    const getSingleCarousal = async()=>{
+        const reqHeader = {
+          "x-access-token":localStorage.getItem("token")
         }
+        const result = await getSingleCarousalByIdAPI(id,reqHeader)
+        setAddCarousal({
+          title: result.data.title,
+          description: result.data.description,
+          link: result.data.link,
+          image: result.data.image
+        });
+
+    }
+    const handleFileChange = (e) =>{
+      const file = e.target.files[0]
+      if(file){
+        setAddCarousal({...addCarousel,image:file})
+        setPreview(URL.createObjectURL(file))
       }
     }
-
-    useEffect(() => {
-      handleProtectedCheck()
-      if(addCarousel.image){
-        setPreview(URL.createObjectURL(addCarousel.image))
-      }else{
-        setPreview("")
-      }
-    },[addCarousel.image])
-    console.log(preview);
-
-    // add carousal
-    const handleSubmit = async(e)=>{
-      e.preventDefault()    
+    const handleUpdate = async(e)=>{
+      e.preventDefault()
       try {
         const reqBody = new FormData()
         reqBody.append("title",addCarousel.title)
@@ -53,15 +51,14 @@
         reqBody.append("link",addCarousel.link)
         reqBody.append("image",addCarousel.image)
 
-        const reqHeader = {
-          "x-access-token":localStorage.getItem("token")
-        }
-
-        const result = await addCarousalAPI(reqBody,reqHeader)
+        const reqHeader = {"x-access-token":localStorage.getItem("token")}
+        const result = await editCarousalAPI(id,reqBody,reqHeader)
         console.log(result);
-        
-        if(result.status === 200){
-          toast.success("Carousal Added Successfully!!!")
+        if(result.status===200){
+          toast.success(result.data.message)
+          setTimeout(() => {
+            navigate("/all-carousel")
+          },3000) 
           setAddCarousal({
             title: "",
             description: "",
@@ -69,23 +66,54 @@
             image: ""
           })
           setPreview("")
-           // Reset the file input value using the ref
-            fileInputRef.current.value = ''; // Clear the file input field
+
         }else{
           toast.error(result.response.data.message)
         }
       } catch (error) {
         console.log(error);
       }
+
     }
-  
-    return (
-      <div className='lg:flex lg:h-screen sm:lg-auto'>
+
+    console.log(addCarousel);
+    const handleProtectedCheck = async()=>{
+        const token = localStorage.getItem("token")
+        // console.log(token);
+        if(!token){
+          navigate("/")
+        }else{
+          const reqHeader = {"x-access-token":token}
+          const result = await protectedAPI(reqHeader)
+        //   console.log(result); 
+          if(result.status!==200){
+            navigate("/")
+          }
+        }
+      }
+
+      useEffect(() => {
+        handleProtectedCheck()
+        getSingleCarousal()
+      },[])
+      // useEffect(() => {
+      //   if(addCarousel.image){
+      //     setPreview(URL.createObjectURL(addCarousel.image))
+      //   }else{
+      //     setPreview("")
+      //   }
+      // },[addCarousel.image])
+
+
+
+
+  return (
+    <div className='lg:flex lg:h-screen sm:lg-auto'>
         <Sidebar />
-        <div className=' flex flex-col items-center w-[100%] h-screen lg:h-auto  '>
+        <div className=' border flex flex-col items-center w-[100%] h-screen lg:h-auto '>
           <Card color="transparent" shadow={false}>
             <Typography variant="h3" color="blue-gray" className='mt-8'>
-              Add Carousal
+              Edit Carousal
             </Typography>
 
             <form className="mt-4 mb-2 w-80 max-w-screen-lg sm:w-96">
@@ -135,11 +163,11 @@
                 </Typography>
                 <input
                   ref={fileInputRef}
-                  onChange={e => setAddCarousal({ ...addCarousel, image: e.target.files[0] })}
+                  onChange={handleFileChange}
                   type="file"
                   className='w-[100%] text-black file:py-2 file:px-4 file:border-0 file:text-white file:bg-blue-gray-900 file:rounded-lg ' />
               </div>
-              <Button type='button' onClick={handleSubmit} className="mt-6 bg-blue-600 text-[16px]" fullWidth>
+              <Button type='button' onClick={handleUpdate} className="mt-6 bg-blue-600 text-[16px]" fullWidth>
                 Submit
               </Button>
             </form>
@@ -147,7 +175,7 @@
         </div>
         <ToastContainer  autoClose={2500} />
       </div>
-    )
-  }
+  )
+}
 
-  export default AddCarousel
+export default EditCarousal

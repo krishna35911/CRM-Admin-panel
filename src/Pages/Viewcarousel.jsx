@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { getacrouselapi, protectedAPI } from '../apiservices/allAPI';
+import { Link } from 'react-router-dom';
 
 function Viewcarousel() {
   const [carousels, setCarousels] = useState([]);
@@ -55,17 +56,17 @@ const handleProtectedCheck = async()=>{
               </thead>
               <tbody className="text-center">
                 {carousels?.length>0?
-                carousels.map((carousel) => (
-                  <tr key={carousel.id}  className='border border-gray-400  '>
+                carousels.map((carousel,index) => (
+                  <tr key={index}  className='border border-gray-400  '>
                     <td className="border  border-gray-400   px-4 py-2">{carousel?.title}</td>
                     <td className="border  border-gray-400    px-4 py-2">{carousel?.description}</td>
                     <td className="border  border-gray-400    px-4 py-2">
                       <img src={carousel?.image} alt={carousel.title} className="w-16 h-16 object-cover mx-auto" />
                     </td>
                     <td className="border  border-gray-400    px-4 py-2">
-                      <button className="text-blue-800 ">
+                      <Link to={`/edit-carousel/${carousel._id}`} className="text-blue-800 ">
                       <i class="fa-solid fa-pen"></i>
-                      </button>
+                      </Link>
                       <button className="text-red-600 ms-6">
                       <i class="fa-solid fa-trash"></i>
                       </button>
