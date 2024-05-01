@@ -54,3 +54,8 @@ export const updatecrmapi=async (id,reqBody,reqHeader)=>{
 export const addCalenderAPI = async (reqBody,reqHeader) => {
     return await commonAPI('POST',`${SERVER_URL}/api/admin/add-calender-events`,reqBody,reqHeader)
 }
+
+//get leaves
+export const getleavesAPI=async(reqHeader)=>{
+    return await commonAPI('GET',`${SERVER_URL}/api/admin/get-leaves`,"",reqHeader)
+}

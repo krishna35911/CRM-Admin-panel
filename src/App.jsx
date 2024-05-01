@@ -9,6 +9,7 @@ import Addcrms from './Pages/CRMs/Addcrms'
 import Updatecrms from './Pages/CRMs/Updatecrms'
 import AddCalender from './Pages/Calender/AddCalender'
 import AllCalender from './Pages/Calender/AllCalender'
+import AllLeaves from './Pages/Leaves/AllLeaves'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
       <Route path="/update-crm/:id" element={<Updatecrms />}/>
       <Route path="/add-calender" element={<AddCalender />} />
       <Route path="/all-calender" element={<AllCalender />} />
+      <Route path='/all-leaves' element={<AllLeaves/>}/>
     </Routes>
     </>
   )

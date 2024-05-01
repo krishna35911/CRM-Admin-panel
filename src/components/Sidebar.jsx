@@ -72,6 +72,14 @@ function Sidebar() {
             All Calender
           </ListItem>
         </Link>
+        <Link to={"/all-leaves"}>
+                <ListItem >
+                  <ListItemPrefix>
+                  <i class="fa-regular fa-user"></i>
+                  </ListItemPrefix>
+                  All Leaves
+                </ListItem>
+              </Link>
       </List>
     </section>
 
@@ -140,7 +148,17 @@ function Sidebar() {
           </ListItem>
         </Link>
 
+        <Link to={"/all-leaves"}>
+                <ListItem >
+                  <ListItemPrefix>
+                  <i class="fa-regular fa-user"></i>
+                  </ListItemPrefix>
+                  All Leaves
+                </ListItem>
+              </Link>
+
             </List>
+            
           </div>
         </div>
       )}
