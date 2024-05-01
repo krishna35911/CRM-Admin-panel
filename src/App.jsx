@@ -6,6 +6,7 @@ import Viewcarousel from './Pages/Viewcarousel'
 import EditCarousal from './Pages/EditCarousal'
 import AllCrms from './Pages/CRMs/AllCrms'
 import Addcrms from './Pages/CRMs/Addcrms'
+import Updatecrms from './Pages/CRMs/Updatecrms'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <Route path="/edit-carousel/:id" element={<EditCarousal />} />
       <Route path="/view-all-crms" element={<AllCrms />} />
       <Route path="/add-crm" element={<Addcrms />} />
+      <Route path="/update-crm/:id" element={<Updatecrms />}/>
     </Routes>
     </>
   )
