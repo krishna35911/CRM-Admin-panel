@@ -44,3 +44,8 @@ export const deleteCrmAPI = async (id,reqHeader)=>{
 export const addcrmapi = async (reqBody,reqHeader) => {
     return await commonAPI('POST',`${SERVER_URL}/api/admin/add-crms`,reqBody,reqHeader)
 }
+
+//updatecrm
+export const updatecrmapi=async (id,reqBody,reqHeader)=>{
+    return await commonAPI('PUT',`${SERVER_URL}/api/admin//updateCrm/${id}`,reqBody,reqHeader)
+}

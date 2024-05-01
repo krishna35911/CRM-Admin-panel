@@ -99,7 +99,7 @@ function AllCrms() {
                       <img src={crm?.image} alt={crm?.title} className="w-16 h-16 object-cover mx-auto" />
                     </td>
                     <td className="border  border-gray-400    px-4 py-2">
-                      <Link  className="text-blue-800 ">
+                      <Link to={`/update-crm/${crm._id}`}  className="text-blue-800 ">
                       <i class="fa-solid fa-pen"></i>
                       </Link>
 
