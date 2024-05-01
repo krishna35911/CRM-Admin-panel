@@ -7,6 +7,8 @@ import EditCarousal from './Pages/EditCarousal'
 import AllCrms from './Pages/CRMs/AllCrms'
 import Addcrms from './Pages/CRMs/Addcrms'
 import Updatecrms from './Pages/CRMs/Updatecrms'
+import AddCalender from './Pages/Calender/AddCalender'
+import AllCalender from './Pages/Calender/AllCalender'
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
       <Route path="/view-all-crms" element={<AllCrms />} />
       <Route path="/add-crm" element={<Addcrms />} />
       <Route path="/update-crm/:id" element={<Updatecrms />}/>
+      <Route path="/add-calender" element={<AddCalender />} />
+      <Route path="/all-calender" element={<AllCalender />} />
     </Routes>
     </>
   )

@@ -54,6 +54,24 @@ function Sidebar() {
             All Carousel
           </ListItem>
         </Link>
+
+        <Link to={'/add-calender'}>
+          <ListItem>
+            <ListItemPrefix>
+            <i class="fa-solid fa-calendar-plus"></i>
+            </ListItemPrefix>
+            Add Calender
+          </ListItem>
+        </Link>
+
+        <Link to={'/all-calender'}>
+          <ListItem>
+            <ListItemPrefix>
+            <i class="fa-solid fa-calendar-days"></i>
+            </ListItemPrefix>
+            All Calender
+          </ListItem>
+        </Link>
       </List>
     </section>
 
@@ -103,6 +121,25 @@ function Sidebar() {
                   All Carousel
                 </ListItem>
               </Link>
+
+              <Link to={'/add-calender'}>
+          <ListItem>
+            <ListItemPrefix>
+            <i class="fa-solid fa-calendar-plus"></i>
+            </ListItemPrefix>
+            Add Calender
+          </ListItem>
+        </Link>
+
+        <Link to={'/all-calender'}>
+          <ListItem>
+            <ListItemPrefix>
+            <i class="fa-solid fa-calendar-days"></i>
+            </ListItemPrefix>
+            All Calender
+          </ListItem>
+        </Link>
+
             </List>
           </div>
         </div>
