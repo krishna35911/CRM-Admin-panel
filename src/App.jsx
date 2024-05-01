@@ -17,7 +17,6 @@ function App() {
       <Route path="/all-carousel" element={<Viewcarousel />} />
       <Route path="/edit-carousel/:id" element={<EditCarousal />} />
       <Route path="/view-all-crms" element={<AllCrms />} />
-
       <Route path="/add-crm" element={<Addcrms />} />
     </Routes>
     </>
