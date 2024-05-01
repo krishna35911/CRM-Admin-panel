@@ -55,6 +55,16 @@ export const addCalenderAPI = async (reqBody,reqHeader) => {
     return await commonAPI('POST',`${SERVER_URL}/api/admin/add-calender-events`,reqBody,reqHeader)
 }
 
+// get calender Events
+export const getCalenderEventsAPI = async (reqHeader)=>{
+    return await commonAPI('GET',`${SERVER_URL}/api/admin/get-calender`,"",reqHeader)
+}
+
+// get calender Events
+export const deleteCalenderEventsAPI = async (id,reqHeader)=>{
+    return await commonAPI('DELETE',`${SERVER_URL}/api/admin/delete-calender-events/${id}`,"",reqHeader)
+}
+
 //get leaves
 export const getleavesAPI=async(reqHeader)=>{
     return await commonAPI('GET',`${SERVER_URL}/api/admin/get-leaves`,"",reqHeader)
