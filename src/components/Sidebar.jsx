@@ -19,6 +19,16 @@ function Sidebar() {
     {/* Sidebar for large screens */}
     <section className="hidden lg:block  bg-black  min-h-screen">
       <List className='text-white'>
+        {/* crms */}
+      <Link to="/view-all-crms">
+                <ListItem >
+                  <ListItemPrefix>
+                  <i class="fa-regular fa-user"></i>
+                  </ListItemPrefix>
+                  All CRMS
+                </ListItem>
+              </Link>
+            {/* carousal */}
       <Link to={'/add-crm'}>
           <ListItem>
             <ListItemPrefix>
@@ -59,6 +69,15 @@ function Sidebar() {
           </div>
           <div className="fixed inset-y-8 left-0 w-[40%] max-w-sm bg-black">
             <List className='text-white'>
+            <Link to="/view-all-crms">
+                <ListItem >
+                  <ListItemPrefix>
+                  <i className="fa-solid fa-plus"></i>
+                  </ListItemPrefix>
+                  All CRMS
+                </ListItem>
+              </Link>
+              {/* carousals */}
             <Link to={'/add-crm'}>
               <ListItem>
                 <ListItemPrefix>
@@ -75,6 +94,7 @@ function Sidebar() {
                   Add Carousel
                 </ListItem>
               </Link>
+
               <Link to="/all-carousel">
                 <ListItem >
                   <ListItemPrefix>

@@ -32,6 +32,14 @@ export const deleteacrouselapi = async (id,reqHeader)=>{
     return await commonAPI('DELETE',`${SERVER_URL}/api/admin/deleteCarousel/${id}`,"",reqHeader)
 }
 
+export const getCrmsAPI = async (reqHeader)=>{
+    return await commonAPI('GET',`${SERVER_URL}/api/admin/get-crms`,"",reqHeader)
+}
+
+export const deleteCrmAPI = async (id,reqHeader)=>{
+    return await commonAPI('DELETE',`${SERVER_URL}/api/admin/delete-crms/${id}`,"",reqHeader)
+}
+
 // add crm
 export const addcrmapi = async (reqBody,reqHeader) => {
     return await commonAPI('POST',`${SERVER_URL}/api/admin/add-crms`,reqBody,reqHeader)
