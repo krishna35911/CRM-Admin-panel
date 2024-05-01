@@ -80,7 +80,7 @@
     }
   
     return (
-      <div className='lg:flex lg:h-screen sm:lg-auto'>
+      <div className='lg:flex '>
         <Sidebar />
         <div className=' flex flex-col items-center w-[100%] h-screen lg:h-auto  '>
           <Card color="transparent" shadow={false}>
