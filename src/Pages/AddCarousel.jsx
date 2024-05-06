@@ -7,6 +7,7 @@
   import 'react-toastify/dist/ReactToastify.css';
 
   function AddCarousel() {
+    
     const fileInputRef = useRef(null)
     const [preview,setPreview] = useState("")
     const navigate = useNavigate()
@@ -124,7 +125,7 @@
                 onChange={e=>setAddCarousal({...addCarousel,link:e.target.value})}
                   type="text"
                   size="lg"
-                  placeholder="****"
+                  placeholder="Add Link"
                   className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                   labelProps={{
                     className: "before:content-none after:content-none",

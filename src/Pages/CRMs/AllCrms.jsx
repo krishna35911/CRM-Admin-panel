@@ -41,7 +41,7 @@ function AllCrms() {
           console.log(error);
         }
       }
-    //   console.log(getCrmData);
+      console.log(getCrmData);
 
     //   delete crm function
     const handleDelete = async(id)=>{
@@ -73,13 +73,18 @@ function AllCrms() {
                 <tr >
                   <th className="border border-gray-400  px-4 py-2 ">Name</th>
                   <th className="border  border-gray-400   px-4 py-2 ">Email</th>
-                  <th className="border  border-gray-400   px-4 py-2 ">Phone</th>
+                  <th className="border  border-gray-400   px-4 py-2 ">Phone1</th>
+                  <th className="border  border-gray-400   px-4 py-2 ">Phone2</th>
+                  <th className="border  border-gray-400   px-4 py-2 ">Whatsapp</th>
+                  <th className="border  border-gray-400   px-4 py-2 ">Instagram</th>
+                  <th className="border  border-gray-400   px-4 py-2 ">Address</th>
+                  <th className="border  border-gray-400   px-4 py-2 ">Guardian Name</th>
+                  <th className="border  border-gray-400   px-4 py-2 ">Guardian Phone</th>
                   <th className="border  border-gray-400   px-4 py-2 ">DOB</th>
                   <th className="border  border-gray-400   px-4 py-2 ">Program</th>
-                  <th className="border  border-gray-400  px-4 py-2 ">Guardian</th>
                   <th className="border  border-gray-400   px-4 py-2 ">JoiningDate</th>
                   <th className="border  border-gray-400   px-4 py-2 ">Salary</th>
-                  <th className="border  border-gray-400   px-4 py-2 ">Image</th>
+                  {/* <th className="border  border-gray-400   px-4 py-2 ">Image</th> */}
                   <th className="border  border-gray-400   px-4 py-2 ">Actions</th>
                 </tr>
               </thead>
@@ -89,15 +94,21 @@ function AllCrms() {
                     <tr key={index} className='border border-gray-400'>
                     <td className="border  border-gray-400  px-4 py-2">{crm?.name}</td>
                     <td className="border  border-gray-400   px-4 py-2">{crm?.email}</td>
-                    <td className="border  border-gray-400   px-4 py-2">{crm?.phoneno}</td>
+                    <td className="border  border-gray-400   px-4 py-2">{crm?.phone1}</td>
+                    <td className="border  border-gray-400   px-4 py-2">{crm?.phone2}</td>
+                    <td className="border  border-gray-400   px-4 py-2">{crm?.whatsapp}</td>
+                    <td className="border  border-gray-400   px-4 py-2">{crm?.instagram}</td>
+                    <td className="border  border-gray-400   px-4 py-2">{crm?.address}</td>
+                    <td className="border  border-gray-400   px-4 py-2">{crm?.guardian[0]?.guardian_name}</td>
+                    <td className="border  border-gray-400   px-4 py-2">{crm?.guardian[0]?.guardian_phone}</td>
                     <td className="border  border-gray-400   px-4 py-2">{crm?.dateofBirth}</td>
                     <td className="border  border-gray-400   px-4 py-2">{crm?.program}</td>
-                    <td className="border  border-gray-400   px-4 py-2">{crm?.guardian}</td>
                     <td className="border  border-gray-400   px-4 py-2">{crm?.joingdate}</td>
                     <td className="border  border-gray-400   px-4 py-2">{crm?.salary}</td>
-                    <td className="border  border-gray-400    px-4 py-2">
+
+                    {/* <td className="border  border-gray-400    px-4 py-2">
                       <img src={crm?.image} alt={crm?.title} className="w-16 h-16 object-cover mx-auto" />
-                    </td>
+                    </td> */}
                     <td className="border  border-gray-400    px-4 py-2">
                       <Link to={`/update-crm/${crm._id}`}  className="text-blue-800 ">
                       <i class="fa-solid fa-pen"></i>

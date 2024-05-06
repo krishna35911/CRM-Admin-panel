@@ -47,7 +47,7 @@ export const addcrmapi = async (reqBody,reqHeader) => {
 
 //updatecrm
 export const updatecrmapi=async (id,reqBody,reqHeader)=>{
-    return await commonAPI('PUT',`${SERVER_URL}/api/admin//updateCrm/${id}`,reqBody,reqHeader)
+    return await commonAPI('PUT',`${SERVER_URL}/api/admin/updateCrm/${id}`,reqBody,reqHeader)
 }
 
 // add calender
