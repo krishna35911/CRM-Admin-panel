@@ -10,6 +10,8 @@ import Updatecrms from './Pages/CRMs/Updatecrms'
 import AddCalender from './Pages/Calender/AddCalender'
 import AllCalender from './Pages/Calender/AllCalender'
 import AllLeaves from './Pages/Leaves/AllLeaves'
+import AddExcel from './Pages/ExcelData/AddExcel'
+import ViewExcelData from './Pages/ExcelData/ViewExcelData'
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
       <Route path="/add-calender" element={<AddCalender />} />
       <Route path="/all-calender" element={<AllCalender />} />
       <Route path='/all-leaves' element={<AllLeaves/>}/>
+      <Route path='/excel-data' element={<AddExcel/>}/>
+      <Route path='/all-excel-data' element={<ViewExcelData/>}/>
     </Routes>
     </>
   )

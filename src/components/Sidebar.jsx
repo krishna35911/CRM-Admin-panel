@@ -80,6 +80,22 @@ function Sidebar() {
                   All Leaves
                 </ListItem>
               </Link>
+        <Link to={"/excel-data"}>
+                <ListItem >
+                  <ListItemPrefix>
+                  <i class="fa-solid fa-file-excel"></i>
+                  </ListItemPrefix>
+                  Add Excel
+                </ListItem>
+        </Link>
+        <Link to={"/all-excel-data"}>
+                <ListItem >
+                  <ListItemPrefix>
+                  <i class="fa-solid fa-table"></i>
+                  </ListItemPrefix>
+                  All excel data
+                </ListItem>
+        </Link>
       </List>
     </section>
 
@@ -155,7 +171,26 @@ function Sidebar() {
                   </ListItemPrefix>
                   All Leaves
                 </ListItem>
-              </Link>
+            </Link>
+
+            
+        <Link to={"/excel-data"}>
+                <ListItem >
+                  <ListItemPrefix>
+                  <i class="fa-solid fa-file-excel"></i>
+                  </ListItemPrefix>
+                  Add Excel
+                </ListItem>
+            </Link>
+
+            <Link to={"/all-excel-data"}>
+                <ListItem >
+                  <ListItemPrefix>
+                  <i class="fa-solid fa-table"></i>
+                  </ListItemPrefix>
+                  All excel data
+                </ListItem>
+        </Link>
 
             </List>
             
