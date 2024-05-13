@@ -6,7 +6,9 @@ import Sidebar from '../../components/Sidebar';
 import { addcrmapi, protectedAPI } from '../../apiservices/allAPI';
 
 function Addcrms() {
-  // const fileInputRef = useRef(null)
+  const fileInputRefImage = useRef(null);
+  const fileInputRefOfferLetter = useRef(null);
+  const   fileInputRefProvisionalCertificate = useRef(null);
   const [addcrms, setaddcrms] = useState({
     name: "",
     email: "",
@@ -16,20 +18,20 @@ function Addcrms() {
     whatsapp: "",
     instagram: "",
     address: "",
-    guardian: [
-      {
-        guardian_name: "",
-        guardian_phone: "",
-      }
-    ],
+    guardian_name: "",
+    guardian_phone: "",
     dateofBirth: "",
     program: "",
     joingdate: "",
     salary: "",
-    // image:""
+    image: null,
+    idno: "",
+    offerLetter: null,
+    provisionalCertificate: null,
+    assets: []
   })
   console.log(addcrms);
-  // const[preview,setPreview] = useState("")
+  const[preview,setPreview] = useState("")
 
   const handleProtectedCheck = async () => {
     const token = localStorage.getItem("token")
@@ -45,43 +47,61 @@ function Addcrms() {
     }
   }
 
+  const handleAssets = (selectedAsset) => {
+    // if selectedAsset not already exists in the assets, add it
+    if (!addcrms.assets.includes(selectedAsset)) {
+      setaddcrms({ ...addcrms, assets: [...addcrms.assets, selectedAsset] })
+    } else {
+      setaddcrms({ ...addcrms, assets: addcrms.assets.filter(asset => asset !== selectedAsset) })
+    }
+  }
+
+
   useEffect(() => {
     handleProtectedCheck()
   }, [])
-  // useEffect(() => {
-  //   handleProtectedCheck()
-  //   if(addcrms.image){
-  //     setPreview(URL.createObjectURL(addcrms.image))
-  //   }else{
-  //     setPreview("")
-  //   }
-  // },[addcrms.image])
-  //   console.log(preview);
+  useEffect(() => {
+    handleProtectedCheck()
+    if(addcrms.image){
+      setPreview(URL.createObjectURL(addcrms.image))
+    }
+    else{
+      setPreview("")
+    }
+  },[addcrms.image,addcrms.assets])
+    console.log(preview);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      // const reqBody = new FormData()
-      // reqBody.append("name",addcrms.name)
-      // reqBody.append("email",addcrms.email)
-      // reqBody.append("password",addcrms.password)
-      // reqBody.append("phone1",addcrms.phone1)
-      // reqBody.append("phone2",addcrms.phone2)
-      // reqBody.append("whatsapp",addcrms.whatsapp)
-      // reqBody.append("instagram",addcrms.instagram)
-      // reqBody.append("address",addcrms.address)
-      // reqBody.append("guardian_name",addcrms.guardian_name)
-      // reqBody.append("guardian_phone",addcrms.guardian_phone)
-      // reqBody.append("dateofBirth",addcrms.dateofBirth)
-      // reqBody.append("program",addcrms.program)
-      // reqBody.append("joingdate",addcrms.joingdate)
-      // reqBody.append("salary",addcrms.salary)
+      const reqBody = new FormData()
+      reqBody.append("name", addcrms.name)
+      reqBody.append("email", addcrms.email)
+      reqBody.append("password", addcrms.password)
+      reqBody.append("phone1", addcrms.phone1)
+      reqBody.append("phone2", addcrms.phone2)
+      reqBody.append("whatsapp", addcrms.whatsapp)
+      reqBody.append("instagram", addcrms.instagram)
+      reqBody.append("address", addcrms.address)
+      reqBody.append("guardian_name", addcrms.guardian_name)
+      reqBody.append("guardian_phone", addcrms.guardian_phone)
+      reqBody.append("dateofBirth", addcrms.dateofBirth)
+      reqBody.append("program", addcrms.program)
+      reqBody.append("joingdate", addcrms.joingdate)
+      reqBody.append("salary", addcrms.salary)
+      reqBody.append("image", addcrms.image)
+      reqBody.append("idno", addcrms.idno)
+      reqBody.append("offerLetter", addcrms.offerLetter)
+      reqBody.append("provisionalCertificate", addcrms.provisionalCertificate)
+      reqBody.append("assets",JSON.stringify( addcrms.assets))
       const reqHeader = {
-        "x-access-token": localStorage.getItem("token")
+       
+        "x-access-token": localStorage.getItem("token"),
+        "Content-Type": "multipart/form-data"
       }
 
-      const result = await addcrmapi(addcrms, reqHeader)
-      //   console.log(result);
+      const result = await addcrmapi(reqBody,reqHeader)
+      console.log(result);
 
       if (result.status === 200) {
         toast.success("CRM Added Successfully!!!")
@@ -94,21 +114,23 @@ function Addcrms() {
           whatsapp: "",
           instagram: "",
           address: "",
-          guardian: [
-            {
-              guardian_name: "",
-              guardian_phone: "",
-            }
-          ],
+          guardian_name: "",
+          guardian_phone: "",
           dateofBirth: "",
           program: "",
           joingdate: "",
           salary: "",
-          // image: ""
+          image: null,
+          idno: "",
+          offerLetter: null,
+          provisionalCertificate: null,
+          assets: []  
         })
-        // setPreview("")
+        setPreview("")
         // Reset the file input value using the ref
-        // fileInputRef.current.value = ''; // Clear the file input field
+        fileInputRef.current.value = ''; // Clear the file input field
+        fileInputRefOfferLetter.value = '';
+        fileInputRefProvisionalCertificate.value = ''
       } else {
         toast.error(result.response.data.message)
       }
@@ -252,17 +274,14 @@ function Addcrms() {
                   className: "before:content-none after:content-none",
                 }}
               />
-              
+
               {/* guardian_name */}
               <Typography variant="h6" color="blue-gray" className="mb-2">
                 Guardian Name
               </Typography>
               <Input
-                value={addcrms.guardian[0].guardian_name}
-                onChange={e => setaddcrms({
-                  ...addcrms,
-                  guardian: [{ ...addcrms.guardian[0], guardian_name: e.target.value }]
-                })}
+                value={addcrms.guardian_name}
+                onChange={e => setaddcrms({ ...addcrms, guardian_name: e.target.value })}
                 type='text'
                 size="lg"
                 placeholder="Guardian name"
@@ -276,9 +295,8 @@ function Addcrms() {
                 Guardian Phone Number
               </Typography>
               <Input
-                value={addcrms.guardian[0].guardian_phone}
-                onChange={e => setaddcrms({ ...addcrms, guardian: [{ ...addcrms.guardian[0], guardian_phone: e.target.value }] })}
-
+                value={addcrms.guardian_phone}
+                onChange={e => setaddcrms({ ...addcrms, guardian_phone: e.target.value })}
                 type='text'
                 size="lg"
                 placeholder="Add Guardian Phone Number"
@@ -344,19 +362,72 @@ function Addcrms() {
                 }}
               />
               {/* image */}
-              {/* <Typography variant="h6" color="blue-gray" className="mb-2">
-              Image
-            </Typography>
-            <input
-              ref={fileInputRef}
-              onChange={e => setaddcrms({ ...addcrms, image: e.target.files[0] })}
-              type="file"
-              className='w-[100%] text-black file:py-2 file:px-4 file:border-0 file:text-white file:bg-blue-gray-900 file:rounded-lg ' /> */}
+              <Typography variant="h6" color="blue-gray" className="mb-2">
+                Image
+              </Typography>
+              <input
+                ref={fileInputRefImage}
+                onChange={e => setaddcrms({ ...addcrms, image: e.target.files[0] })}
+                type="file"
+                className='w-[100%] text-black file:py-2 file:px-4 file:border-0 file:text-white file:bg-blue-gray-900 file:rounded-lg ' />
+
+              {/* ID Number */}
+              <Typography variant="h6" color="blue-gray" className="mt-4">
+                ID NO
+              </Typography>
+              <Input
+                value={addcrms.idno}
+                onChange={e => setaddcrms({ ...addcrms, idno: e.target.value })}
+                size="lg"
+                type='text'
+                placeholder="Add ID Number"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                labelProps={{
+                  className: "before:content-none after:content-none",
+                }}
+              />
+
+              {/* offerLetter */}
+              <Typography variant="h6" color="blue-gray" className="mb-2">
+                Offer Letter
+              </Typography>
+              <input
+                ref={fileInputRefOfferLetter}
+                onChange={e => setaddcrms({ ...addcrms, offerLetter: e.target.files[0] })}
+                type="file"
+                className='w-[100%] text-black file:py-2 file:px-4 file:border-0 file:text-white file:bg-blue-gray-900 file:rounded-lg ' />
+
+              {/* Provisional Certificate */}
+              <Typography variant="h6" color="blue-gray" className="mb-2">
+                Provisional Certificate
+              </Typography>
+              <input
+                ref={fileInputRefProvisionalCertificate}
+                onChange={e => setaddcrms({ ...addcrms, provisionalCertificate: e.target.files[0] })}
+                type="file"
+                className='w-[100%] text-black file:py-2 file:px-4 file:border-0 file:text-white file:bg-blue-gray-900 file:rounded-lg ' />
+
+              {/* Assets */}
+              <Typography variant="h6" color="blue-gray" className="mt-2">
+                Assets
+              </Typography>
+              <div className='inline-flex gap-2'>
+                <label className='text-black'>Laptop</label>
+                <input value="Laptop" onChange={() => handleAssets('Laptop')} type="checkbox" />
+              </div>
+              <div className='inline-flex gap-2'>
+                <label className='text-black'>Sim</label>
+                <input value="Sim" onChange={() => handleAssets('Sim')} type="checkbox" />
+              </div>
+              <div className='inline-flex gap-2'>
+                <label className='text-black'>Phone</label>
+                <input value="Phone" onChange={() => handleAssets('Phone')} type="checkbox" />
+              </div>
+
             </div>
-            <Button type='button' onClick={handleSubmit} className="mt-6 bg-blue-600 text-[16px]" fullWidth>
+            <Button type='button' onClick={handleSubmit} className="my-6 bg-blue-600 text-[16px]" fullWidth>
               Submit
             </Button>
-
           </form>
         </Card>
       </div>
